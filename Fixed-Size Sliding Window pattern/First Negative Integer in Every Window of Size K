@@ -1,0 +1,46 @@
+Problem Statement: Given an array and a positive integer K, find the first negative integer for each and every contiguous subarray of size K. If a window does not contain a negative integer, then print 0 for that window.
+(e.g., Array = [-8, 2, 3, -6, 10], K = 2. Output = [-8, 0, -6, -6])
+
+Java: 
+import java.util.*;
+
+class Solution {
+    static List<Integer> firstNegInt(int a[], int k) {
+        int n = a.length;
+        List<Integer> r = new ArrayList<>();
+        Queue<Integer> q = new LinkedList<>();
+
+        for(int i = 0; i < n; i++) {
+            if(a[i] < 0) q.add(i);
+            if(!q.isEmpty() && q.peek() <= i - k) q.poll();
+            if(i >= k - 1) {
+                if(q.isEmpty()) r.add(0);
+                else r.add(a[q.peek()]);
+            }
+        }
+        return r;
+    }
+}
+
+Python:
+#User function Template for python3
+
+from collections import deque
+
+class Solution:
+    def firstNegInt(self, arr, k):
+        n = len(arr)
+        r = []
+        q = deque()
+
+        for i in range(n):
+            if arr[i] < 0:
+                q.append(i)
+            if q and q[0] <= i - k:
+                q.popleft()
+            if i >= k - 1:
+                if not q:
+                    r.append(0)
+                else:
+                    r.append(arr[q[0]])
+        return r
