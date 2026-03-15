@@ -1,0 +1,33 @@
+Given an integer array, move all the even integers at the beginning of the array followed by all the odd integers. Do it in-place.
+
+Java:
+class Solution {
+    public int[] sortArrayByParity(int[] nums) {
+        int l = 0, r = nums.length - 1;
+        while(l < r){
+            if(nums[l] % 2 > nums[r] % 2){
+                int t = nums[l];
+                nums[l] = nums[r];
+                nums[r] = t;
+            }
+            if(nums[l] % 2 == 0) l++;
+            if(nums[r] % 2 == 1) r--;
+        }
+        return nums;
+    }
+}
+
+
+Python:
+class Solution:
+    def sortArrayByParity(self, nums: List[int]) -> List[int]:
+        l = 0
+        r = len(nums) - 1
+        while l < r:
+            if nums[l] % 2 > nums[r] % 2:
+                nums[l], nums[r] = nums[r], nums[l]
+            if nums[l] % 2 == 0:
+                l += 1
+            if nums[r] % 2 == 1:
+                r -= 1
+        return nums
