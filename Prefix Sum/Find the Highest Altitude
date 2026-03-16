@@ -1,0 +1,24 @@
+A biker is on a road trip starting at altitude 0. You are given an integer array gain of length n where gain[i] is the net gain in altitude between points i and i + 1. Return the highest altitude reached.
+
+Python:
+class Solution:
+    def largestAltitude(self,g):
+        a=0
+        m=0
+        for x in g:
+            a+=x
+            if a>m:
+                m=a
+        return m
+
+Java:
+class Solution {
+    public int largestAltitude(int[] g) {
+        int a=0,m=0;
+        for(int x:g){
+            a+=x;
+            if(a>m) m=a;
+        }
+        return m;
+    }
+}
