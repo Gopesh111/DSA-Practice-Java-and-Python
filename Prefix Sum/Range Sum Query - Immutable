@@ -1,0 +1,25 @@
+Given an integer array nums, handle multiple queries where you need to calculate the sum of the elements between index left and right (inclusive).
+
+Java:
+class NumArray {
+    int[] p;
+    public NumArray(int[] a) {
+        int n=a.length;
+        p=new int[n+1];
+        for(int i=0;i<n;i++) p[i+1]=p[i]+a[i];
+    }
+    public int sumRange(int l,int r) {
+        return p[r+1]-p[l];
+    }
+}
+
+Python:
+class NumArray:
+
+    def __init__(self,a):
+        self.p=[0]
+        for x in a:
+            self.p.append(self.p[-1]+x)
+
+    def sumRange(self,l,r):
+        return self.p[r+1]-self.p[l]
