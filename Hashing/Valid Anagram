@@ -1,0 +1,28 @@
+Given two strings s and t, return true if t is an anagram of s, and false otherwise. An Anagram is a word formed by rearranging the letters of a different word.
+
+Java:
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) return false;
+        int[] a = new int[26];
+        for (char c : s.toCharArray()) a[c - 'a']++;
+        for (char c : t.toCharArray()) {
+            if (a[c - 'a']-- == 0) return false;
+        }
+        return true;
+    }
+}
+
+Python:
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+        d = {}
+        for i in s:
+            d[i] = d.get(i, 0) + 1
+        for i in t:
+            if i not in d or d[i] == 0:
+                return False
+            d[i] -= 1
+        return True
