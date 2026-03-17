@@ -1,0 +1,25 @@
+Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
+Java:
+
+import java.util.*;
+class Solution {
+    public boolean containsDuplicate(int[] n) {
+        Set<Integer> s = new HashSet<>();
+        for (int i : n) {
+            if (!s.add(i)) return true;
+        }
+        return false;
+    }
+}
+
+Python:
+
+class Solution:
+    def containsDuplicate(self, n: List[int]) -> bool:
+        s = set()
+        for i in n:
+            if i in s:
+                return True
+            s.add(i)
+        return False
